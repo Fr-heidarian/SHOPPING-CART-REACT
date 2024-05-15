@@ -10,14 +10,24 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
   const handleAdd = (product) => {
-    setCartItems((items) => {
-      return [...items, product];
-    });
+    const exist = cartItems.find((x) => x.id === product.id);
+
+    if (exist) {
+      const newCartItems = cartItems.map((x) =>
+        x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+      );
+      setCartItems(newCartItems);
+    } else {
+      const newCartItems = [...cartItems, { ...product, qty: 1 }];
+      setCartItems(newCartItems);
+    }
   };
 
   return (
     <>
-      <Header />
+      <Header
+        cartItemsCount={cartItems.reduce((acc, item) => acc + item.qty, 0)}
+      />
       <div className="row">
         <Main products={products} onAdd={handleAdd} />
         <Basket cartItems={cartItems} />

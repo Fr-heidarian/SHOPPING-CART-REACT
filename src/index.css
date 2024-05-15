@@ -44,3 +44,11 @@ button {
   cursor: pointer;
   width: 100%;
 }
+.badge {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: rgb(222, 73, 73);
+  color: white;
+  text-align: center;
+  line-height: 1.5rem;
+}
