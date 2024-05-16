@@ -52,3 +52,16 @@ button {
   text-align: center;
   line-height: 1.5rem;
 }
+.buttons-container {
+  display: flex;
+  align-items: center;
+
+  .add {
+    background-color: rgb(8, 174, 240);
+    width: 1.5rem;
+  }
+  .remove {
+    background-color: rgb(222, 73, 73);
+    width: 1.5rem;
+  }
+}

@@ -1,4 +1,4 @@
-export default function product({ product, onAdd }) {
+export default function product({ product, onAdd}) {
   const { name, price, image } = product;
 
   return (
