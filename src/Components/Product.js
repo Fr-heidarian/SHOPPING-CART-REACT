@@ -1,4 +1,6 @@
-export default function product({ product, onAdd}) {
+import CartButtons from "./CartButtons.js";
+
+export default function product({ product, onAdd, onRemove, item }) {
   const { name, price, image } = product;
 
   return (
@@ -7,13 +9,17 @@ export default function product({ product, onAdd}) {
         <img src={image} alt={name} className="small" />
         <h3>{name}</h3>
         <div>${price}</div>
-        <button
-          onClick={() => {
-            onAdd(product);
-          }}
-        >
-          Add To Cart
-        </button>
+        {item ? (
+          <CartButtons onAdd={onAdd} onRemove={onRemove} item={item} />
+        ) : (
+          <button
+            onClick={() => {
+              onAdd(product);
+            }}
+          >
+            Add To Cart
+          </button>
+        )}
       </div>
     </>
   );

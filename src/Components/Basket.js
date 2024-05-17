@@ -1,3 +1,5 @@
+import CartButtons from "./CartButtons";
+
 export default function Basket({ cartItems, onAdd, onRemove }) {
   return (
     <div className="section">
@@ -6,15 +8,7 @@ export default function Basket({ cartItems, onAdd, onRemove }) {
       {cartItems.map((item) => (
         <div className="row center">
           <div>{item.name}</div>
-          <div className="buttons-container">
-            <button className="remove" onClick={() => onRemove(item)}>
-              -
-            </button>
-            <div>{item.qty}</div>
-            <button className="add" onClick={() => onAdd(item)}>
-              +
-            </button>
-          </div>
+          <CartButtons onAdd={onAdd} onRemove={onRemove} item={item} />
           <div>
             {item.qty}*${item.price}
           </div>
