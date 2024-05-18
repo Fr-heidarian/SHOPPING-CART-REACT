@@ -2,12 +2,23 @@ import "./App.css";
 import Header from "./Components/Header.js";
 import Main from "./Components/Main.js";
 import Basket from "./Components/Basket.js";
-import data from "./data.js";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 
 function App() {
-  const { products } = data;
+  const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const readProducts = async () => {
+      const response = await fetch(
+        "https://6300a18859a8760a757d441c.mockapi.io/User"
+      );
+      const products = await response.json();
+      setProducts(products);
+    };
+    readProducts();
+  }, []);
 
   const handleAdd = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
