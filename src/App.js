@@ -8,17 +8,20 @@ import { useEffect, useState } from "react";
 function App() {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  const [searchParam, setSearchParam] = useState("");
 
   useEffect(() => {
     const readProducts = async () => {
-      const response = await fetch(
-        "https://6300a18859a8760a757d441c.mockapi.io/User"
-      );
+      let url = "https://6300a18859a8760a757d441c.mockapi.io/User";
+      if (url) {
+        url += `?name=${searchParam}`;
+      }
+      const response = await fetch(url);
       const products = await response.json();
       setProducts(products);
     };
     readProducts();
-  }, []);
+  }, [searchParam]);
 
   const handleAdd = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
@@ -60,6 +63,7 @@ function App() {
           cartItems={cartItems}
           onAdd={handleAdd}
           onRemove={handleRemove}
+          onSearch={(param) => setSearchParam(param)}
         />
         <Basket
           cartItems={cartItems}
