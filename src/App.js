@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
   const [searchParam, setSearchParam] = useState("");
 
   useEffect(() => {
@@ -16,60 +15,27 @@ function App() {
       if (url) {
         url += `?name=${searchParam}`;
       }
-      const response = await fetch(url);
-      const products = await response.json();
-      setProducts(products);
+      try {
+        const response = await fetch(url);
+        if (response.status === 200) {
+          const products = await response.json();
+          setProducts(products);
+        } else {
+          setProducts([]);
+        }
+      } catch (e) {
+        console.log(e);
+      }
     };
     readProducts();
   }, [searchParam]);
 
-  const handleAdd = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
-
-    if (exist) {
-      const newCartItems = cartItems.map((cartItem) =>
-        cartItem.id === product.id ? { ...exist, qty: exist.qty + 1 } : cartItem
-      );
-      setCartItems(newCartItems);
-    } else {
-      const newCartItems = [...cartItems, { ...product, qty: 1 }];
-      setCartItems(newCartItems);
-    }
-  };
-
-  const handleRemove = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
-    if (exist.qty === 1) {
-      const newCartItems = cartItems.filter(
-        (cartItem) => cartItem.id !== product.id
-      );
-      setCartItems(newCartItems);
-    } else {
-      const newCartItems = cartItems.map((cartItem) =>
-        cartItem.id === product.id ? { ...exist, qty: exist.qty - 1 } : cartItem
-      );
-      setCartItems(newCartItems);
-    }
-  };
-
   return (
     <>
-      <Header
-        cartItemsCount={cartItems.reduce((acc, item) => acc + item.qty, 0)}
-      />
+      <Header />
       <div className="row">
-        <Main
-          products={products}
-          cartItems={cartItems}
-          onAdd={handleAdd}
-          onRemove={handleRemove}
-          onSearch={(param) => setSearchParam(param)}
-        />
-        <Basket
-          cartItems={cartItems}
-          onAdd={handleAdd}
-          onRemove={handleRemove}
-        />
+        <Main products={products} onSearch={(param) => setSearchParam(param)} />
+        <Basket />
       </div>
     </>
   );

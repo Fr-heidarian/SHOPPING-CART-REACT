@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import CartButtons from "./CartButtons";
+import { CartContext } from "../CartContext";
 
-export default function Basket({ cartItems, onAdd, onRemove }) {
+export default function Basket() {
+  const { cartItems} = useContext(CartContext);
   return (
     <div className="section">
       <h2>Cart Items</h2>
@@ -8,7 +11,7 @@ export default function Basket({ cartItems, onAdd, onRemove }) {
       {cartItems.map((item) => (
         <div className="row center">
           <div>{item.name}</div>
-          <CartButtons onAdd={onAdd} onRemove={onRemove} item={item} />
+          <CartButtons item={item} />
           <div>
             {item.qty}*${item.price}
           </div>
