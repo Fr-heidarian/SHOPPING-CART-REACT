@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [searchParam, setSearchParam] = useState("");
 
   useEffect(() => {
@@ -16,19 +18,31 @@ function App() {
         url += `?name=${searchParam}`;
       }
       try {
+        setLoading(true);
         const response = await fetch(url);
         if (response.status === 200) {
           const products = await response.json();
           setProducts(products);
         } else {
           setProducts([]);
+          setError(`Server responsed with error code ${response.status}`);
         }
       } catch (e) {
         console.log(e);
+        setError(e.message);
+      } finally {
+        setLoading(false);
       }
     };
     readProducts();
   }, [searchParam]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <>
