@@ -12,7 +12,7 @@ export default function Main({ products, onSearch }) {
           onChange={(e) => {
             onSearch(e.target.value);
           }}
-        />
+        /> 
       </div>
       <div className="row">
         {products.map((p) => (
