@@ -69,7 +69,14 @@ export default function Products({ searchParam }) {
       // }
     };
 
-    readProducts();
+    let timerId;
+    if (searchParam) {
+      timerId = setTimeout(readProducts, 1000);
+    } else {
+      readProducts();
+    }
+
+    return () => clearTimeout(timerId);
   }, [searchParam]);
 
   if (loading) {
