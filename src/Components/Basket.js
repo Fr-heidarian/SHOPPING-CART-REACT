@@ -5,7 +5,7 @@ import { CartContext } from "../CartContext";
 export default function Basket() {
   const { cartItems} = useContext(CartContext);
   return (
-    <div className="section">
+    <div className="section section-area-right">
       <h2>Cart Items</h2>
       {cartItems.length === 0 && <div>Cart is empty</div>}
       {cartItems.map((item) => (

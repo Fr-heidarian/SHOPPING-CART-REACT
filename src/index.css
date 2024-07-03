@@ -27,7 +27,7 @@ code {
 }
 a {
   text-decoration: none;
-  color:black;
+  color: black;
   font-weight: bold;
 }
 .card {
@@ -106,4 +106,10 @@ button {
   color: rgb(222, 73, 73);
   margin-right: 6px;
   margin-top: 6px;
+}
+.section-area-left {
+  width: 65%;
+}
+.section-area-right {
+  width: 25%;
 }
