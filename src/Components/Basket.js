@@ -18,6 +18,7 @@ export default function Basket() {
           </div>
         </div>
       ))}
+      <button className="remove">Clear Cart</button>
     </div>
   );
 }
