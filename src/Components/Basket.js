@@ -1,9 +1,10 @@
-import { useContext } from "react";
 import CartButtons from "./CartButtons";
-import { CartContext } from "../CartContext";
+import { useSelector } from "react-redux";
 
 export default function Basket() {
-  const { cartItems} = useContext(CartContext);
+  // const { cartItems} = useContext(CartContext);
+  const { cartItems } = useSelector((store) => store.cart);
+
   return (
     <div className="section section-area-right">
       <h2>Cart Items</h2>

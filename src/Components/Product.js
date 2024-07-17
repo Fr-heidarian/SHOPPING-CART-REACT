@@ -1,10 +1,13 @@
-import { useContext } from "react";
 import CartButtons from "./CartButtons";
-import { CartContext } from "../CartContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../features/cart/cartSlice";
 
 export default function Product({ product }) {
   const { name, price, image } = product;
-  const { addToCart, cartItems } = useContext(CartContext);
+  // const { addToCart, cartItems } = useContext(CartContext);
+  const { cartItems } = useSelector((store) => store.cart);
+  const dispatch = useDispatch();
+
   const item = cartItems.find((cartItem) => cartItem.id === product.id);
   return (
     <div className="card">
@@ -14,7 +17,10 @@ export default function Product({ product }) {
       {item ? (
         <CartButtons item={item} />
       ) : (
-        <button onClick={() => addToCart(product)}>Add To Cart</button>
+        // <button onClick={() => addToCart(product)}>Add To Cart</button>
+        <button onClick={() => dispatch(addToCart(product))}>
+          Add To Cart
+        </button>
       )}
     </div>
   );
