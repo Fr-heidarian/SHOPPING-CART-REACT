@@ -1,9 +1,11 @@
+import { openModal } from "../features/modal/modalSlice";
 import CartButtons from "./CartButtons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Basket() {
   // const { cartItems} = useContext(CartContext);
   const { cartItems } = useSelector((store) => store.cart);
+  const dispatch = useDispatch();
 
   return (
     <div className="section section-area-right">
@@ -11,14 +13,21 @@ export default function Basket() {
       {cartItems.length === 0 && <div>Cart is empty</div>}
       {cartItems.map((item) => (
         <div className="row center">
-          <div>{item.name}</div>
+          <div className="width-item-xl">{item.name}</div>
           <CartButtons item={item} />
-          <div>
+          <div className="width-item-m">
             {item.qty}*${item.price}
           </div>
         </div>
       ))}
-      <button className="remove">Clear Cart</button>
+      <button
+        className="button-modal"
+        onClick={() => {
+          dispatch(openModal());
+        }}
+      >
+        Clear Cart
+      </button>
     </div>
   );
 }

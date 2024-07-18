@@ -21,7 +21,7 @@ export default function Header() {
           <FaShoppingCart className="icon-style" />
         </a>
         {/* {getCartTotal() > 0 && <div className="badge">{getCartTotal()}</div>} */}
-        <div className="badge">{total}</div>
+        {total > 0 && <div className="badge">{total}</div>}
         <a href="#">Sign In</a>
       </div>
     </div>
