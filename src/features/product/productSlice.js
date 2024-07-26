@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BASE_URL, PRODUCTS_URL } from "../../api/constants";
 
 const initialState = { products: [], loading: false, error: "" };
 
@@ -7,9 +8,7 @@ export const readProducts = createAsyncThunk(
   async (searchParam, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `https://6300a18859a8760a757d441c.mockapi.io/User?name=${
-          searchParam ?? ""
-        }`
+        `${BASE_URL}/${PRODUCTS_URL}?name=${searchParam ?? ""}`
       );
       if (res.status === 404) {
         return rejectWithValue("Not Found");
