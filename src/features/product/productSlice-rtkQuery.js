@@ -9,4 +9,5 @@ const productApi = createApi({
   }),
 });
 
-
+export const { useReadProductsQuery } = productApi;
+export default productApi;
