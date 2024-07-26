@@ -3,7 +3,7 @@ import LoadingComponent from "./LoadingComponent";
 import Product from "./Product";
 
 export default function Products({ searchParam }) {
-  const { data: products, isLoading } = useReadProductsQuery();
+  const { data: products, isLoading } = useReadProductsQuery(searchParam);
 
   if (isLoading) {
     return <LoadingComponent />;

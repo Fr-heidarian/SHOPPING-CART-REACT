@@ -5,7 +5,9 @@ const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
-    readProducts: builder.query({ query: () => PRODUCTS_URL }),
+    readProducts: builder.query({
+      query: (searchParam) => `${PRODUCTS_URL}?name=${searchParam}`,
+    }),
   }),
 });
 
