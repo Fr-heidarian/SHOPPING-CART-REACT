@@ -1,9 +1,10 @@
 import CartButtons from "./CartButtons";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../features/cart/cartSlice";
+import { Link } from "react-router-dom";
 
 export default function Product({ product }) {
-  const { name, price, image } = product;
+  const { name, price, image, id } = product;
   // const { addToCart, cartItems } = useContext(CartContext);
   const { cartItems } = useSelector((store) => store.cart);
   const dispatch = useDispatch();
@@ -11,8 +12,11 @@ export default function Product({ product }) {
   const item = cartItems.find((cartItem) => cartItem.id === product.id);
   return (
     <div className="card">
-      <img src={image} alt={name} className="small" />
-      <h3>{name}</h3>
+      <Link to={`products/${id}`}>
+        <img src={image} alt={name} className="small" />
+        <h3>{name}</h3>
+      </Link>
+
       <div>${price}</div>
       {item ? (
         <CartButtons item={item} />

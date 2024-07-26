@@ -5,14 +5,23 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProductPage from "./Components/ProductPage.js";
 // import { CartProvider } from "./CartContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const router = createBrowserRouter([
+  { path: "/", element: <App /> },
+  { path: "/products/:productId", element: <ProductPage /> },
+]);
+
 root.render(
   <React.StrictMode>
     {/* <CartProvider> */}
     <Provider store={store}>
-      <App />
+      <RouterProvider router={router}>
+        <App />
+      </RouterProvider>
     </Provider>
     {/* </CartProvider> */}
   </React.StrictMode>
