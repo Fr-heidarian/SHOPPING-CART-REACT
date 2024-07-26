@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Products from "./Products";
+import Products from "./Products-rtkQuery";
 
 export default function Main() {
   const [searchParam, setSearchParam] = useState("");
