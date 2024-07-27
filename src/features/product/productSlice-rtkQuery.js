@@ -8,8 +8,12 @@ const productApi = createApi({
     readProducts: builder.query({
       query: (searchParam) => `${PRODUCTS_URL}?name=${searchParam}`,
     }),
+
+    readProduct: builder.query({
+      query: (id) => `${PRODUCTS_URL}/${id}`,
+    }),
   }),
 });
 
-export const { useReadProductsQuery } = productApi;
+export const { useReadProductsQuery, useReadProductQuery } = productApi;
 export default productApi;
