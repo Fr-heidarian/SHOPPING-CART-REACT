@@ -29,6 +29,7 @@ a {
   text-decoration: none;
   color: black;
   font-weight: bold;
+  margin-left: 0.25rem;
 }
 .card {
   width: 20%;
@@ -68,8 +69,8 @@ button {
   text-align: center;
   line-height: 1.25rem;
   position: absolute;
-  top: 30px;
-  right: 78px;
+  top: 24px;
+  right: 243px;
 }
 .buttons-container {
   display: flex;

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getCartTotal } from "../features/cart/cartSlice.js";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   // const { getCartTotal } = useContext(CartContext);
@@ -13,16 +14,17 @@ export default function Header() {
 
   return (
     <div className="row section">
-      <a href="#">
+      <Link href="/">
         <h2>Simple Shopping Cart</h2>
-      </a>
+      </Link>
       <div className="row center">
-        <a href="#">
+        <Link href="/cart">
           <FaShoppingCart className="icon-style" />
-        </a>
+        </Link>
         {/* {getCartTotal() > 0 && <div className="badge">{getCartTotal()}</div>} */}
         {total > 0 && <div className="badge">{total}</div>}
-        <a href="#">Sign In</a>
+        <Link href="/sign in">Sign In | </Link>
+        <Link to="/create"> Create New Product</Link>
       </div>
     </div>
   );
