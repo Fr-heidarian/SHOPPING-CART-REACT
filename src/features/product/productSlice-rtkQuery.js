@@ -22,6 +22,14 @@ const productApi = createApi({
       }),
     }),
 
+    updateProduct: builder.mutation({
+      query: (product) => ({
+        url: `${PRODUCTS_URL}/${product.id}`,
+        method: "PUT",
+        body: product,
+      }),
+    }),
+
   }),
 });
 
