@@ -4,6 +4,7 @@ import { BASE_URL, PRODUCTS_URL } from "../../api/constants";
 const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+
   endpoints: (builder) => ({
     readProducts: builder.query({
       query: (searchParam) => `${PRODUCTS_URL}?name=${searchParam}`,
@@ -20,6 +21,7 @@ const productApi = createApi({
         body: product,
       }),
     }),
+
   }),
 });
 

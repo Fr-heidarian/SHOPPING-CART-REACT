@@ -1,11 +1,14 @@
 import { useState } from "react";
+import { useCreateProductMutation } from "../features/product/productSlice-rtkQuery";
 
 export default function CreateProductPage() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
+  const [createProduct] = useCreateProductMutation();
 
   const handlesubmit = (e) => {
     e.preventDefault();
+    createProduct({ name, price });
   };
 
   return (
