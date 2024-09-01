@@ -13,7 +13,10 @@ export default function Product({ product }) {
   return (
     <div className="card">
       <Link to={`products/${id}`}>
-        <img src={image} alt={name} className="small" />
+        <div className="mask_image">
+          <img src={image} alt={name} />
+        </div>
+
         <h3>{name}</h3>
       </Link>
 

@@ -11,9 +11,10 @@ function App() {
   return (
     <>
       <Header />
-      <div className="row">
-        <Main />
+      <div className="row page_content">
         <Basket />
+        <Main />
+
         {isOpen && <Modal />}
       </div>
     </>

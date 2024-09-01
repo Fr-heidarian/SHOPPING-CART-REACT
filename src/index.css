@@ -6,6 +6,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* fix size for all images */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -15,6 +24,7 @@ code {
 .row {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .row.center {
@@ -29,24 +39,80 @@ a {
   text-decoration: none;
   color: black;
   font-weight: bold;
-  margin-left: 0.25rem;
 }
+
+.page_content {
+  align-items: flex-start;
+}
+
+/* large only */
+@media screen and (min-width: 1025px) {
+  .page_content .section-area-right {
+    order: 2;
+  }
+  .page_content .section-area-left {
+    order: 1;
+  }
+}
+/* medium only */
+@media screen and (max-width: 1025px) and (min-width: 640px) {
+  .page_content .section-area-right {
+    width: 100%;
+    margin: 0 10px 10px 10px;
+  }
+  .page_content .section-area-left {
+    width: 100%;
+  }
+}
+/* small only */
+@media screen and (max-width: 640px) {
+  .page_content .section-area-right {
+    width: 100%;
+    margin: 0 10px 10px 10px;
+  }
+  .page_content .section-area-left {
+    width: 100%;
+    margin: 0;
+  }
+}
+/*
+========================================
+card style
+----------------------------------------
+*/
 .card {
-  width: 20%;
+  width: 21.5%;
   background-color: white;
   padding: 1rem;
-  margin: 0.5rem;
+  margin: 0 0 11px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 2px;
 }
-img.small {
-  width: 100%;
+.card .mask_image {
   height: 8rem;
-  border-radius: 2px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-button {
+/* medium only */
+@media screen and (max-width: 1025px) and (min-width: 640px) {
+  .card {
+    width: 32.7%;
+    padding: 6px;
+  }
+}
+/* small only */
+@media screen and (max-width: 640px) {
+  .card {
+    width: 49%;
+    padding: 6px;
+  }
+}
+.card button {
   padding: 0.75rem 0.5rem;
   background-color: #f0c040;
   cursor: pointer;
@@ -57,6 +123,11 @@ button {
   color: white;
   font-weight: bold;
 }
+/* 
+--------------------------------
+
+------------------------------------
+ */
 .badge {
   width: 1.5rem;
   height: 1.25rem;
@@ -145,7 +216,7 @@ button {
   position: relative;
 }
 .section-area-left {
-  width: 90%;
+  width: 70%;
 }
 .section-area-right {
   width: 25%;
